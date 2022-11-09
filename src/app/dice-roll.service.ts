@@ -18,7 +18,6 @@ export class DiceRollService {
 
   public addNewRoll(dieCount:number, dieSize:number, modifier:number){
     this.addRoll({id: this.getNextId(), dieCount,dieSize, modifier, isActive: false} as AttackRoll)
-    //let ar: AttackRoll = {id: this.getNextId(), dieCount,dieSize,modifier, isActive: false}
   }
 
   public addRoll(roll: AttackRoll){

@@ -5,5 +5,8 @@
   <button (click)="ParseRoll()">Parse</button>
 </div>
 <div class="roll-container">
-  <app-attack-roll [attackRoll]="roll" *ngFor="let roll of rolls$ | async; index as i"></app-attack-roll>
+  <div class="roll" *ngFor="let roll of rolls$ | async; index as i">
+    <input type="checkbox" [value]="roll.isActive">
+    <app-attack-roll [attackRoll]="roll"></app-attack-roll>
+  </div>
 </div>
