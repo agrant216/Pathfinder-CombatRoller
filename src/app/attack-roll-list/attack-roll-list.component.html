@@ -1,0 +1,9 @@
+<p>attack-roll-list works!</p>
+<div class="roll-form">
+  <span>Roll Parser</span>
+  <input type="text" [(ngModel)]="rollInput" (keyup.enter)="ParseRoll()">
+  <button (click)="ParseRoll()">Parse</button>
+</div>
+<div class="roll-container">
+  <app-attack-roll [attackRoll]="roll" *ngFor="let roll of rolls$ | async; index as i"></app-attack-roll>
+</div>
