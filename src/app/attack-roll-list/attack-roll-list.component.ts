@@ -9,11 +9,12 @@ import { AttackRoll } from '../models/attack-roll.model';
   styleUrls: ['./attack-roll-list.component.scss']
 })
 export class AttackRollListComponent implements OnInit {
-  rolls$: Observable<AttackRoll[]>;
+  rolls$: Observable<Map<number,AttackRoll>>;
+  rollName: string = "";
   rollInput: string = "";
 
   constructor(private RollService: DiceRollService) {
-    this.rolls$ = this.RollService.getRollList()
+    this.rolls$ = this.RollService.getRollList();
   }
 
   ngOnInit(): void {
@@ -24,7 +25,11 @@ export class AttackRollListComponent implements OnInit {
     let splitOnPlus = this.rollInput.split('+');
     let splitOnD = splitOnPlus[0].split('d');
     console.log(splitOnD[0],splitOnD[1],splitOnPlus[1]);
-    this.RollService.addNewRoll(Number(splitOnD[0]) || 0,Number(splitOnD[1])||0,Number(splitOnPlus[1])||0);
+    this.RollService.addNewRoll(this.rollName, Number(splitOnD[0]) || 0,Number(splitOnD[1])||0,Number(splitOnPlus[1])||0);
     this.rollInput = "";
+  }
+
+  toggleActiveRoll(rollId: number){
+    this.RollService.toggleRollAsActive(rollId);
   }
 }

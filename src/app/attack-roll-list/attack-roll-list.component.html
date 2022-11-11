@@ -1,12 +1,13 @@
 <p>attack-roll-list works!</p>
 <div class="roll-form">
   <span>Roll Parser</span>
-  <input type="text" [(ngModel)]="rollInput" (keyup.enter)="ParseRoll()">
+  <input type="text" placeholder="Roll Name" [(ngModel)]="rollName">
+  <input type="text" placeholder="Roll Formula" [(ngModel)]="rollInput" (keyup.enter)="ParseRoll()">
   <button (click)="ParseRoll()">Parse</button>
 </div>
 <div class="roll-container">
-  <div class="roll" *ngFor="let roll of rolls$ | async; index as i">
-    <input type="checkbox" [value]="roll.isActive">
-    <app-attack-roll [attackRoll]="roll"></app-attack-roll>
+  <div class="roll" *ngFor="let roll of rolls$ | async | keyvalue; index as i">
+    <input type="checkbox" [value]="roll.value.isActive" (click)="toggleActiveRoll(roll.value.id)">
+    <app-attack-roll [attackRoll]="roll.value"></app-attack-roll>
   </div>
 </div>

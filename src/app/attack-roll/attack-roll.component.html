@@ -1,5 +1,5 @@
-<p>attack-roll works!</p>
-<div>
+<div class="attack-roll" [ngClass]="{'active':attackRoll.isActive}">
+  {{attackRoll.name}}
   <span  class="number-of-die">{{attackRoll.dieCount}}</span>
   <span>d</span>
   <span class="die-size">{{attackRoll.dieSize}}</span>
