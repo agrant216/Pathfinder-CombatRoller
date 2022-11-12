@@ -1,12 +1,20 @@
-<p>dice-roll-display works!</p>
-<button (click)="Roll()">Roll the Dice!</button>
-<div class="result-container" *ngIf="results$">
-  <h2>Reuslts:</h2>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item result-text" *ngFor="let result of results$ | async">
-      <div class="result-name" *ngIf="result.originalRoll.name">{{result.originalRoll.name}}</div>
-      <div class="result-roll-formula">{{getFormattedRoll(result.originalRoll)}}</div>
-      <div class="result-totals">{{getFormattedDiceRolls(result.dieRolls)}} + {{result.modifierTotal}} = {{result.resultTotal}}</div>
-    </li>
-  </ul>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <button (click)="Roll()" class="btn btn-outline-primary btn-lrg">Roll the Dice!</button>
+    </div>
+    <div class="col">
+      <div class="result-container" *ngIf="results$">
+        <h2>Reuslts:</h2>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item result-text" *ngFor="let result of results$ | async">
+            <div class="result-name" *ngIf="result.originalRoll.name">{{result.originalRoll.name}}</div>
+            <div class="result-roll-formula">{{getFormattedRoll(result.originalRoll)}}</div>
+            <div class="result-totals">{{getFormattedDiceRolls(result.dieRolls)}} + {{result.modifierTotal}} = {{result.resultTotal}}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
+

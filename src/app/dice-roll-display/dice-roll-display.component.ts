@@ -19,7 +19,7 @@ export class DiceRollDisplayComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  Roll(){
+  public Roll(){
     this.RollService.CalculateActiveRolls();
   }
 
