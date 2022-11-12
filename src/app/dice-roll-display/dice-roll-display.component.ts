@@ -23,7 +23,20 @@ export class DiceRollDisplayComponent implements OnInit {
     this.RollService.CalculateActiveRolls();
   }
 
-  public getFormatedRoll(roll:AttackRoll): string{
+  public getFormattedRoll(roll:AttackRoll): string {
     return `${roll.dieCount}d${roll.dieSize} + ${roll.modifier}`;
+  }
+
+  public getFormattedDiceRolls(dice: number[]): string {
+    let text: string[] = ["("];
+    dice.forEach((die, i, arr) => {
+      if(i !== arr.length - 1){
+        text.push(die.toString(),"+");
+      }
+      else{
+        text.push(die.toString(),")")
+      }
+    })
+    return text.join("");
   }
 }

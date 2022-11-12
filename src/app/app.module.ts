@@ -6,6 +6,7 @@ import { AttackRollComponent } from './attack-roll/attack-roll.component';
 import { DiceRollDisplayComponent } from './dice-roll-display/dice-roll-display.component';
 import { AttackRollListComponent } from './attack-roll-list/attack-roll-list.component';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
