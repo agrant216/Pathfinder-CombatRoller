@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DiceRollService } from '../dice-roll.service';
+import { AttackRoll } from '../models/attack-roll.model';
 import { RollResult } from '../models/roll-result.model';
 
 @Component({
@@ -20,5 +21,9 @@ export class DiceRollDisplayComponent implements OnInit {
 
   Roll(){
     this.RollService.CalculateActiveRolls();
+  }
+
+  public getFormatedRoll(roll:AttackRoll): string{
+    return `${roll.dieCount}d${roll.dieSize} + ${roll.modifier}`;
   }
 }
