@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <button (click)="Roll()" class="btn btn-outline-primary btn-lrg">Roll the Dice!</button>
+      <div class="roll-button">
+        <button (click)="Roll()" class="btn btn-outline-primary btn-lrg roll-button">Roll the Dice!</button>
+      </div>
     </div>
     <div class="col">
       <div class="result-container" *ngIf="results$">
-        <h2>Reuslts:</h2>
         <ul class="list-group list-group-flush">
           <li class="list-group-item result-text" *ngFor="let result of results$ | async">
             <div class="result-name" *ngIf="result.originalRoll.name">{{result.originalRoll.name}}</div>
