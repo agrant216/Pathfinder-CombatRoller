@@ -6,6 +6,6 @@
 </div>
 <div class="roll-container">
   <div class="roll" *ngFor="let roll of rolls$ | async | keyvalue; index as i">
-    <app-attack-roll [attackRoll]="roll.value" (click)="toggleActiveRoll(roll.value.id)"></app-attack-roll>
+    <app-attack-roll [attackRoll]="roll.value" (activateRoll)="toggleActiveRoll(roll.value.id)"></app-attack-roll>
   </div>
 </div>

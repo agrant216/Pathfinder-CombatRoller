@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AttackRoll } from '../models/attack-roll.model';
 
 @Component({
@@ -7,12 +7,25 @@ import { AttackRoll } from '../models/attack-roll.model';
   styleUrls: ['./attack-roll.component.scss']
 })
 export class AttackRollComponent implements OnInit {
-  @Input() editMode: boolean = false;
   @Input() attackRoll: AttackRoll = {} as AttackRoll;
+  @Output() editRoll = new EventEmitter<number>();
+  @Output() deleteRoll = new EventEmitter<number>();
+  @Output() activateRoll = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  setRollEdit(id: number){
+    this.editRoll.emit(id);
+  }
+
+  setRollDelete(id: number){
+    this.deleteRoll.emit(id);
+  }
+
+  setRollActive(id: number){
+    this.activateRoll.emit(id);
+  }
 }

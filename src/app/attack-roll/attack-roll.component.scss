@@ -1,14 +1,28 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
 .active {
   border-color: green($color: #000000);
   background-color: rgba(0, 209, 0, 0.301);
 }
 
-.btn-close {
-  z-index: 1;
+.btn-group-vertical {
+  max-width: 53.5px;
+  padding: 0 10px;
+}
+
+.row {
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.roll-text {
+  min-width: 75%;
+  width: fit-content;
 }
 
 .card {
-  width: 14rem;
+  min-width: 14rem;
+  width: fit-content;
   font-size: 18px;
 }
 .roll-name {
@@ -16,4 +30,16 @@
 }
 .card-body {
   font-size: 20px;
+  padding: 16px 10px;
+}
+
+.icon {
+  width: 1em;
+
+  &.edit::before {
+    content: "";
+    background-image: url("/assets/edit.svg");
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
 }

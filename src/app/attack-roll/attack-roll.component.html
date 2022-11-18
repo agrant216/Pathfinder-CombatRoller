@@ -1,10 +1,24 @@
 <div class="card" [ngClass]="{'active':attackRoll.isActive}">
-  <div class="card-body">
-    <div class="roll-name">{{attackRoll.name}}</div>
-    <span  class="number-of-die">{{attackRoll.dieCount}}</span>
-    <span>d</span>
-    <span class="die-size">{{attackRoll.dieSize}}</span>
-    <span>+</span>
-    <span class="roll-modifier">{{attackRoll.modifier}}</span>
+  <div class="card-body container">
+    <div class="row">
+      <div class="col-9 roll-text" (click)="setRollActive(attackRoll.id)">
+        <div class="roll-name">{{attackRoll.name}}</div>
+        <span  class="number-of-die">{{attackRoll.dieCount}}</span>
+        <span>d</span>
+        <span class="die-size">{{attackRoll.dieSize}}</span>
+        <span>+</span>
+        <span class="roll-modifier">{{attackRoll.modifier}}</span>
+      </div>
+      <div class="btn-group-vertical col-3">
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="setRollDelete(attackRoll.id)" aria-label="Close">
+          <i class="bi bi-x-lg"></i>
+        </button>
+        <button type="button" class="btn btn-outline-secondary btn-sm">4</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="setRollEdit(attackRoll.id)">
+          <i class="bi bi-pencil-square"></i>
+        </button>
+      </div>
+    </div>
+
   </div>
 </div>
