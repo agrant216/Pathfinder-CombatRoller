@@ -6,12 +6,14 @@
       </div>
     </div>
     <div class="col">
-      <div class="result-container" *ngIf="results$">
+      <div class="result-container" *ngIf="allResults$">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item result-text" *ngFor="let result of results$ | async">
+          <li class="list-group-item result-text" *ngFor="let result of allResults$ | async">
             <div class="result-name" *ngIf="result.originalRoll.name">{{result.originalRoll.name}}</div>
             <div class="result-roll-formula">{{getFormattedRoll(result.originalRoll)}}</div>
-            <div class="result-totals">{{getFormattedDiceRolls(result.dieRolls)}} + {{result.modifierTotal}} = {{result.resultTotal}}</div>
+            <div class="rolls-container" *ngFor="let roll of result.results">
+              <div class="result-totals">{{getFormattedDiceRolls(roll.dieRolls)}} + {{roll.modifierTotal}} = {{roll.resultTotal}}</div>
+            </div>
           </li>
         </ul>
       </div>

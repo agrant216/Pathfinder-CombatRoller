@@ -12,6 +12,7 @@ export class AttackRollListComponent implements OnInit {
   rolls$: Observable<Map<number,AttackRoll>>;
   rollName: string = "";
   rollInput: string = "";
+  repeatNumber: string = "1";
 
   constructor(private RollService: DiceRollService) {
     this.rolls$ = this.RollService.getRollList();
@@ -24,12 +25,31 @@ export class AttackRollListComponent implements OnInit {
     console.log(this.rollInput);
     let splitOnPlus = this.rollInput.split('+');
     let splitOnD = splitOnPlus[0].split('d');
+
     console.log(splitOnD[0],splitOnD[1],splitOnPlus[1]);
-    this.RollService.addNewRoll(this.rollName, Number(splitOnD[0]) || 0,Number(splitOnD[1])||0,Number(splitOnPlus[1])||0);
+
+    let roll = {
+      name: this.rollName,
+      dieCount: Number(splitOnD[0]),
+      dieSize: Number(splitOnD[1]),
+      modifier: Number(splitOnPlus[1]),
+      repeat: Number(this.repeatNumber)
+    } as AttackRoll;
+
+    this.RollService.addNewRoll(roll);
+
     this.rollInput = "";
   }
 
   toggleActiveRoll(rollId: number){
     this.RollService.toggleRollAsActive(rollId);
+  }
+
+  deleteRoll(rollId: number){
+    this.RollService.deleteRollFromList(rollId);
+  }
+
+  setEditMode(){
+
   }
 }

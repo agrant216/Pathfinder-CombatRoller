@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DiceRollService } from '../dice-roll.service';
 import { AttackRoll } from '../models/attack-roll.model';
-import { RollResult } from '../models/roll-result.model';
+import { RollResults } from '../models/roll-result.model';
 
 @Component({
   selector: 'app-dice-roll-display',
@@ -10,10 +10,10 @@ import { RollResult } from '../models/roll-result.model';
   styleUrls: ['./dice-roll-display.component.scss']
 })
 export class DiceRollDisplayComponent implements OnInit {
-  results$: Observable<RollResult[]>;
+  allResults$: Observable<RollResults[]>;
 
   constructor(private RollService: DiceRollService) {
-    this.results$ = this.RollService.getRollResults();
+    this.allResults$ = this.RollService.getRollResults();
   }
 
   ngOnInit(): void {
