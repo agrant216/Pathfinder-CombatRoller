@@ -1,8 +1,13 @@
-export interface AttackRoll {
+export interface AttackRoll extends Roll {
   id: number;
   name: string;
-  dieCount: number;
-  dieSize: number;
   modifier: number;
   isActive: boolean;
+  repeat: number;
+  additionalRolls: Roll[];
+}
+
+interface Roll {
+  dieCount: number;
+  dieSize: number;
 }
