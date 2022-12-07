@@ -14,6 +14,9 @@ export class AttackRollListComponent implements OnInit {
   rollInput: string = "";
   repeatNumber: string = "1";
 
+  isEditMode: boolean = false;
+  editId: number = 0;
+
   constructor(private RollService: DiceRollService) {
     this.rolls$ = this.RollService.getRollList();
   }
@@ -22,23 +25,18 @@ export class AttackRollListComponent implements OnInit {
   }
 
   ParseRoll(){
-    console.log(this.rollInput);
-    let splitOnPlus = this.rollInput.split('+');
-    let splitOnD = splitOnPlus[0].split('d');
+    let roll = this.createAttackRoll();
 
-    console.log(splitOnD[0],splitOnD[1],splitOnPlus[1]);
+    if (this.isEditMode){
+      roll.id = this.editId;
+      this.RollService.updateAttackRoll(roll);
+      this.isEditMode = false;
+    }
+    else{
+      this.RollService.addNewRoll(roll);
+    }
 
-    let roll = {
-      name: this.rollName,
-      dieCount: Number(splitOnD[0]),
-      dieSize: Number(splitOnD[1]),
-      modifier: Number(splitOnPlus[1]),
-      repeat: Number(this.repeatNumber)
-    } as AttackRoll;
-
-    this.RollService.addNewRoll(roll);
-
-    this.rollInput = "";
+    this.resetFormControls();
   }
 
   toggleActiveRoll(rollId: number){
@@ -49,7 +47,32 @@ export class AttackRollListComponent implements OnInit {
     this.RollService.deleteRollFromList(rollId);
   }
 
-  setEditMode(){
+  setEditMode(editId: number){
+    this.isEditMode = true;
+    //get roll from store by ID
+    this.editId = editId;
+    let editRoll = this.RollService.getRollById(editId);
+    //Set up controls
+    this.rollName = editRoll.name;
+    this.rollInput = editRoll.text;
+    this.repeatNumber = editRoll.repeat.toString();
+  }
 
+  private createAttackRoll(): AttackRoll{
+    let splitOnPlus = this.rollInput.split('+');
+    let splitOnD = splitOnPlus[0].split('d');
+
+    return {
+      name: this.rollName,
+      dieCount: Number(splitOnD[0]),
+      dieSize: Number(splitOnD[1]),
+      modifier: Number(splitOnPlus[1]),
+      repeat: Number(this.repeatNumber)
+    } as AttackRoll;
+  }
+
+  private resetFormControls(){
+    this.rollName = "";
+    this.rollInput = "";
   }
 }

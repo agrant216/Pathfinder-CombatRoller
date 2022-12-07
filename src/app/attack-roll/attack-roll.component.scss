@@ -5,6 +5,11 @@
   background-color: rgba(0, 209, 0, 0.301);
 }
 
+.editing {
+  border-color: blue($color: #000000);
+  background-color: rgba(1, 81, 255, 0.418);
+}
+
 .btn-group-vertical {
   max-width: 53.5px;
   padding: 0 10px;

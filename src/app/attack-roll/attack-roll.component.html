@@ -1,4 +1,4 @@
-<div class="card" [ngClass]="{'active':attackRoll.isActive}">
+<div class="card" [ngClass]="{'active':attackRoll.isActive, 'editing':editing}">
   <div class="card-body container">
     <div class="row">
       <div class="col-9 roll-text" (click)="setRollActive(attackRoll.id)">
@@ -19,6 +19,5 @@
         </button>
       </div>
     </div>
-
   </div>
 </div>

@@ -12,6 +12,8 @@ export class AttackRollComponent implements OnInit {
   @Output() deleteRoll = new EventEmitter<number>();
   @Output() activateRoll = new EventEmitter<number>();
 
+  public editing: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -19,6 +21,7 @@ export class AttackRollComponent implements OnInit {
 
   setRollEdit(id: number){
     this.editRoll.emit(id);
+    this.editing = true;
   }
 
   setRollDelete(id: number){

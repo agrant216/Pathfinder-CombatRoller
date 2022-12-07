@@ -3,10 +3,10 @@
   <input type="text" placeholder="Roll Name" [(ngModel)]="rollName">
   <input type="text" placeholder="Roll Formula" [(ngModel)]="rollInput" (keyup.enter)="ParseRoll()">
   <input type="number" placeholder="How Many Times?" name="repeatNumber" [(ngModel)]="repeatNumber" (keyup.enter)="ParseRoll()">
-  <button (click)="ParseRoll()">Parse</button>
+  <button (click)="ParseRoll()"><span *ngIf="!isEditMode">Parse</span><span *ngIf="isEditMode">Edit</span></button>
 </div>
 <div class="roll-container">
   <div class="roll" *ngFor="let roll of rolls$ | async | keyvalue; index as i">
-    <app-attack-roll [attackRoll]="roll.value" (activateRoll)="toggleActiveRoll(roll.value.id)" (deleteRoll)="deleteRoll($event)"></app-attack-roll>
+    <app-attack-roll [attackRoll]="roll.value" (activateRoll)="toggleActiveRoll(roll.value.id)" (deleteRoll)="deleteRoll($event)" (editRoll)="setEditMode($event)"></app-attack-roll>
   </div>
 </div>

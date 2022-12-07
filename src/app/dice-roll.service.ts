@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { AttackRoll } from './models/attack-roll.model';
+import { AttackRoll, Roll } from './models/attack-roll.model';
 import { RollResults, Result } from './models/roll-result.model';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class DiceRollService {
 
   public addNewRoll(roll: AttackRoll){
     roll.id = this.getNextId();
-    this.addRoll(roll)
+    this.addOrUpdateRoll(roll)
   }
 
   public getRollById(id:number): AttackRoll {
@@ -30,17 +30,15 @@ export class DiceRollService {
   }
 
   public updateAttackRoll(updatedRoll: AttackRoll){
-    let newRollList = this.rollList.getValue();
-    this.rollList.next(newRollList.set(updatedRoll.id,updatedRoll));
+    this.addOrUpdateRoll(updatedRoll);
   }
 
-  public addRoll(roll: AttackRoll){
+  public addOrUpdateRoll(roll: AttackRoll){
     this.rollList.next(this.rollList.getValue().set(roll.id,roll));
   }
 
   public getNextId(): number {
-    this.currentId = this.currentId+1;
-    return this.currentId;
+    return this.currentId+1;
   }
 
   public toggleRollAsActive(id: number){
@@ -61,14 +59,11 @@ export class DiceRollService {
 
     activeRolls.forEach(roll => {
       let rollResult: RollResults = {originalRoll: roll, results: [] as Result[]} as RollResults;
-
       for (let i = 0; i < roll.repeat; i++) {
            rollResult.results.push(this.getRandomDiceResult(roll));
       }
-
       results.push(rollResult);
     });
-
     this.rollResults.next(results);
   }
 
